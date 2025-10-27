@@ -1,5 +1,9 @@
- info.onCountdownEnd(function () {
-    info.changeScoreBy(1)
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+	
+})
+info.onCountdownEnd(function () {
+    game.splash("Lost one life")
+    info.changeLifeBy(-1)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.spray, 500)
@@ -7,8 +11,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.startCountdown(10)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    game.splash("You been hit")
     music.play(music.melodyPlayable(music.wawawawaa), music.PlaybackMode.UntilDone)
+    info.changeLifeBy(-1)
 })
 let mySprite2: Sprite = null
 let mySprite = sprites.create(img`
