@@ -1,5 +1,22 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    projectile = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . 2 3 3 3 2 2 2 . . . . . 
+        . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
+        . . . 2 1 1 1 1 1 1 1 1 1 1 1 . 
+        . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
+        . . . . 2 3 3 3 3 2 2 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, -100, 50)
 })
 info.onCountdownEnd(function () {
     game.splash("Lost one life")
@@ -15,6 +32,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     music.play(music.melodyPlayable(music.wawawawaa), music.PlaybackMode.UntilDone)
     info.changeLifeBy(-1)
 })
+let projectile: Sprite = null
 let mySprite2: Sprite = null
 let mySprite = sprites.create(img`
     ...fffffff.........fff..
@@ -53,7 +71,7 @@ mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
-let mySprite3 = sprites.create(img`
+projectile = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
