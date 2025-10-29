@@ -1,5 +1,5 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSide(img`
+    projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -16,7 +16,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, -100, 50)
+        `, mySprite, -100, 0)
 })
 info.onCountdownEnd(function () {
     game.splash("Lost one life")
@@ -25,7 +25,7 @@ info.onCountdownEnd(function () {
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.spray, 500)
     info.changeScoreBy(1)
-    info.startCountdown(10)
+    info.startCountdown(20)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     game.splash("You been hit")
@@ -34,7 +34,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let projectile: Sprite = null
 let mySprite2: Sprite = null
-let mySprite = sprites.create(img`
+let mySprite: Sprite = null
+mySprite = sprites.create(img`
     ...fffffff.........fff..
     ...ff8588ff.......ff9f..
     ....ff88888fff...ff99f..
@@ -71,24 +72,6 @@ mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
-projectile = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . 2 3 3 3 2 2 2 . . . . . 
-    . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
-    . . . 2 1 1 1 1 1 1 1 1 1 1 1 . 
-    . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
-    . . . . 2 3 3 3 3 2 2 . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Projectile)
 controller.moveSprite(mySprite)
 info.setScore(0)
 info.setLife(10)
