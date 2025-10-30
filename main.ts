@@ -24,7 +24,98 @@ info.onCountdownEnd(function () {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(mySprite2, effects.spray, 500)
-    info.changeScoreBy(1)
+    animation.runImageAnimation(
+    projectile,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . 2 3 3 3 3 2 2 . . . . . 
+        . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
+        . . . 2 1 1 1 1 1 1 1 1 1 1 1 . 
+        . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
+        . . . . 2 3 3 3 2 2 2 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 2 3 3 3 3 3 2 . . . . 
+        . . . . 3 1 1 1 1 1 1 1 3 . . . 
+        . . . . 1 1 1 1 1 1 1 1 1 . . . 
+        . . . 2 1 1 1 1 1 1 1 1 1 2 . . 
+        . . . 2 3 1 1 1 1 1 1 3 3 2 . . 
+        . . . . . . 2 2 2 2 2 . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 4 4 4 4 4 . . . . . . 
+        . . . 4 4 4 5 5 5 d 4 4 4 4 . . 
+        . . 4 d 5 d 5 5 5 d d d 4 4 . . 
+        . . 4 5 5 1 1 1 d d 5 5 5 4 . . 
+        . 4 5 5 5 1 1 1 5 1 1 5 5 4 4 . 
+        . 4 d d 1 1 5 5 5 1 1 5 5 d 4 . 
+        . 4 5 5 1 1 5 1 1 5 5 d d d 4 . 
+        . 2 5 5 5 d 1 1 1 5 1 1 5 5 2 . 
+        . 2 d 5 5 d 1 1 1 5 1 1 5 5 2 . 
+        . . 2 4 d d 5 5 5 5 d d 5 4 . . 
+        . . . 2 2 4 d 5 5 d d 4 4 . . . 
+        . . 2 2 2 2 2 4 4 4 2 2 2 . . . 
+        . . . 2 2 4 4 4 4 4 4 2 2 . . . 
+        . . . . . 2 2 2 2 2 2 . . . . . 
+        `,img`
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . 2 4 4 4 5 5 4 4 4 2 2 2 . 
+        . 2 2 5 5 d 4 5 5 5 4 4 4 4 2 . 
+        . 2 4 5 5 5 5 d 5 5 5 4 5 4 2 2 
+        . 2 4 d d 5 5 5 5 5 5 d 4 4 4 2 
+        2 4 5 5 d 5 5 5 d d d 5 5 5 4 4 
+        2 4 5 5 4 4 4 d 5 5 d 5 5 5 4 4 
+        4 4 4 4 . . 2 4 5 5 . . 4 4 4 4 
+        . . b b b b 2 4 4 2 b b b b . . 
+        . b d d d d 2 4 4 2 d d d d b . 
+        b d d b b b 2 4 4 2 b b b d d b 
+        b d d b b b b b b b b b b d d b 
+        b b d 1 1 3 1 1 d 1 d 1 1 d b b 
+        . . b b d d 1 1 3 d d 1 b b . . 
+        . . 2 2 4 4 4 4 4 4 4 4 2 2 . . 
+        . . . 2 2 4 4 4 4 4 2 2 2 . . . 
+        `,img`
+        . . . . . . . . b b . . . . . . 
+        . . . . . . . . b b . . . . . . 
+        . . . b b b . . . . . . . . . . 
+        . . b d d b . . . . . . . b b . 
+        . b d d d b . . . . . . b d d b 
+        . b d d b . . . . b b . b d d b 
+        . b b b . . . . . b b . . b b . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . b b b d d d d d d b b b . . 
+        . b d c c c b b b b c c d d b . 
+        b d d c b . . . . . b c c d d b 
+        c d d b b . . . . . . b c d d c 
+        c b d d d b b . . . . b d d c c 
+        . c c b d d d d b . c c c c c c 
+        . . . c c c c c c . . . . . . . 
+        `],
+    500,
+    false
+    )
+    info.changeScoreBy(10)
     info.startCountdown(20)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -202,4 +293,5 @@ scene.setBackgroundImage(img`
 forever(function () {
     mySprite.setStayInScreen(true)
     mySprite.setBounceOnWall(true)
+    game.setGameOverScoringType(game.ScoringType.HighScore)
 })
