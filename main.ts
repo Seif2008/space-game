@@ -1,3 +1,8 @@
+info.onScore(1000, function () {
+    game.gameOver(true)
+    game.splash("You Won 🎉!")
+    game.splash("Congratulations!")
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -291,7 +296,9 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
 forever(function () {
+    let myEnemy: Sprite = null
     mySprite.setStayInScreen(true)
     mySprite.setBounceOnWall(true)
     game.setGameOverScoringType(game.ScoringType.HighScore)
+    myEnemy.follow(mySprite)
 })
