@@ -28,7 +28,7 @@ info.onCountdownEnd(function () {
     info.changeLifeBy(-1)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprites.destroy(mySprite2, effects.spray, 500)
+    sprites.destroy(myEnemy, effects.spray, 500)
     animation.runImageAnimation(
     projectile,
     [img`
@@ -129,7 +129,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
 })
 let projectile: Sprite = null
-let mySprite2: Sprite = null
+let myEnemy: Sprite = null
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
     ...fffffff.........fff..
@@ -150,7 +150,7 @@ mySprite = sprites.create(img`
     ...........fffff........
     `, SpriteKind.Player)
 mySprite.setPosition(134, 58)
-mySprite2 = sprites.create(img`
+myEnemy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -168,9 +168,6 @@ mySprite2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
-controller.moveSprite(mySprite)
-info.setScore(0)
-info.setLife(10)
 music.play(music.melodyPlayable(music.spooky), music.PlaybackMode.UntilDone)
 info.startCountdown(10)
 scene.setBackgroundImage(img`
@@ -295,8 +292,10 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
+controller.moveSprite(mySprite)
+info.setScore(0)
+info.setLife(10)
 forever(function () {
-    let myEnemy: Sprite = null
     mySprite.setStayInScreen(true)
     mySprite.setBounceOnWall(true)
     game.setGameOverScoringType(game.ScoringType.HighScore)
