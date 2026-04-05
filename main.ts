@@ -27,6 +27,33 @@ info.onCountdownEnd(function () {
     game.splash("Lost one life")
     info.changeLifeBy(-1)
 })
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    sprites.destroy(mySprite, effects.spray, 500)
+    info.changeLifeBy(-1)
+    myEnemy.setVelocity(20, 0)
+    myEnemy.setPosition(0, randint(0, 100))
+    mySprite.setPosition(130, 55)
+    info.changeCountdownBy(20)
+    mySprite = sprites.create(img`
+        ...fffffff.........fff..
+        ...ff8588ff.......ff9f..
+        ....ff88888fff...ff99f..
+        ....ff89998888ffff998f..
+        ...f9f888988888889988f..
+        ..f999ff888888888888ff..
+        .f8f9999f8888888888888f.
+        f888ff999f8888888885888f
+        f88888fff8888888888fffff
+        .f8888888888998888f.....
+        ..ff88888888f998888f....
+        ....ffffffffff998588f...
+        .........f88fff888888f..
+        .........f888ffffffff...
+        ..........f58ffff.......
+        ...........fffff........
+        `, SpriteKind.Player)
+    controller.moveSprite(mySprite)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(myEnemy, effects.spray, 500)
     animation.runImageAnimation(
@@ -149,7 +176,7 @@ mySprite = sprites.create(img`
     ..........f58ffff.......
     ...........fffff........
     `, SpriteKind.Player)
-mySprite.setPosition(134, 58)
+mySprite.setPosition(130, 55)
 myEnemy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -168,6 +195,7 @@ myEnemy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
+myEnemy.setPosition(10, randint(0, 100))
 music.play(music.melodyPlayable(music.spooky), music.PlaybackMode.UntilDone)
 info.startCountdown(10)
 scene.setBackgroundImage(img`
@@ -299,5 +327,4 @@ forever(function () {
     mySprite.setStayInScreen(true)
     mySprite.setBounceOnWall(true)
     game.setGameOverScoringType(game.ScoringType.HighScore)
-    myEnemy.follow(mySprite)
 })
